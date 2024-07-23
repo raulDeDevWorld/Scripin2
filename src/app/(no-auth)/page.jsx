@@ -20,6 +20,16 @@ import { DownloadTableExcel } from 'react-export-table-to-excel';
 
 919931391
 619931391
+
+
+919931391
+919931392
+919931393
+919931394
+919931395
+919931396
+919931397
+919931398
 function CotizacionTerrestre() {
     const { user, userDB, pdfData, setUserPdfData, setUserSuccess } = useUser()
     const router = useRouter()
@@ -40,11 +50,11 @@ function CotizacionTerrestre() {
                 // https://numeracionyoperadores.cnmc.es/api/portabilidad/fijo?numero=919931391&captchaLoad=true
                 const res = await fetch(`https://numeracionyoperadores.cnmc.es/api/portabilidad/fijo?numero=${i}&captchaLoad=true`)
                 const db = await res.json()
-                acc = [...acc, { ...db, order: index }]
+                acc = [...acc, { ...db, order: index, portabilidad:  'fijo' }]
                 console.log(db)
                 return setData(acc)
             }
-            acc = [...acc, { ...db, order: index }]
+            acc = [...acc, { ...db, order: index, portabilidad:  'movil' }]
             console.log(acc)
 
             return setData(acc)
@@ -122,6 +132,9 @@ function CotizacionTerrestre() {
                                     Operador actual:
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Portabilidad:
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Fecha consulta:
                                 </th>
 
@@ -139,6 +152,9 @@ function CotizacionTerrestre() {
                                     </th>
                                     <td class="px-6 py-4">
                                         {i.operador && i.operador !== undefined && i.operador.nombre ? i.operador.nombre : 'Operador Inexistente'}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {i.portabilidad && i.portabilidad !== undefined && i.portabilidad}
                                     </td>
                                     <td class="px-6 py-4">
                                         {i.fecha && i.fecha !== undefined ? i.fecha : 'Fecha Inexistente'}
