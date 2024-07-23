@@ -52,7 +52,7 @@ function CotizacionTerrestre() {
             // setData([...data, db])
 
         })
-
+     
 
         // return setData(acc)
 
